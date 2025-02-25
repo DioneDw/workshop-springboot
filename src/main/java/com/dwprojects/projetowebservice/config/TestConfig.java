@@ -72,5 +72,12 @@ public class TestConfig  implements CommandLineRunner {
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
+
+        // Vamos colocar o um pagamento no Order o1 que está com o status pago (PAID).
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"),o1);
+        // Eu vou associar em memória que o Order o1 tem o payment pay1
+        o1.setPayment(pay1);
+
+        orderRepository.save(o1);
     }
 }
