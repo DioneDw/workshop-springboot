@@ -2,8 +2,11 @@ package com.dwprojects.projetowebservice.services;
 
 import com.dwprojects.projetowebservice.entities.User;
 import com.dwprojects.projetowebservice.repositories.UserRepository;
+import com.dwprojects.projetowebservice.services.exceptions.DatabaseException;
 import com.dwprojects.projetowebservice.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +32,15 @@ public class UserService {
     }
 
     public void delete(Long id){
-        userRepository.deleteById(id);
+
+        try {
+            if (!userRepository.existsById(id)) {
+                throw new ResourceNotFoundException(id);
+            }
+            userRepository.deleteById(id);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public User update(Long id, User obj){
