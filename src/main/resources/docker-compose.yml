@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  pg-docker:
+    image: postgres:14.17-alpine
+    container_name: devpostgresql
+    restart: always
+    environment:
+      POSTGRES_DB: devdb
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: olhaquebacana
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - dev-network
+
+  pg-admin:
+    image: elestio/pgadmin:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dwill.dwe@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    ports:
+      - "8095:80"
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json
+    networks:
+      - dev-network
+volumes:
+  pg_data:
+
+networks:
+  dev-network:
+    driver: bridge
