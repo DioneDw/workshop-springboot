@@ -5,7 +5,7 @@ COPY pom.xml /app
 
 WORKDIR /app
 
-RUN apt-get install maven -y
+RUN apt-get update && apt-get install -y maven
 RUN mvn clean install
 
 FROM openjdk:17-jdk
