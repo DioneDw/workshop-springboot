@@ -64,7 +64,7 @@ O diagrama UML (Unified Modeling Language) acima ilustra os aspectos do sistema 
 
 Inicialmente podemos destacar que o projeto possui 6 classes principais com relacionamentos entre si. Temos um Enumeração que representa o status do pedido de forma fixa.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
 ## :gear: Tecnologias/Ferramentas usadas
 Abaixo temos todas as tecnologias/ferramentas utilizadas durante o desenvolvimento da aplicação. 
@@ -113,4 +113,4 @@ Abaixo temos todas as tecnologias/ferramentas utilizadas durante o desenvolvimen
 [Postman-badge]: https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white
 [Postman-url]: https://www.postman.com/
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
