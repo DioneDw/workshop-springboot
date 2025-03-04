@@ -50,7 +50,6 @@ Características do projeto:
 
 Por utilizar 3 perfis o projeto possibilita aplicar diferentes ferramentas e técnicas, para a construção de uma aplicação que utiliza a lógica de camadas (Recursos, Serviços e Repositórios).
 
-
 ### Padrão de camadas
 <img src="images/layers.png" align="center"/>
 
@@ -60,8 +59,7 @@ A ilustração acima que detalha como funciona a comunicação e transmissão de
 
 <img src="images/diagram.png" align="center"/>
 
-O diagrama UML (Unified Modeling Language) acima ilustra os aspectos do sistema como relacionamentos, comportamento, estrutura e funcionalidade. 
-
+O diagrama UML (Unified Modeling Language) acima ilustra os aspectos do sistema como relacionamentos, comportamento, estrutura e funcionalidade.
 Inicialmente podemos destacar que o projeto possui 6 classes principais com relacionamentos entre si. Temos um Enumeração que representa o status do pedido de forma fixa.
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
@@ -79,6 +77,28 @@ Abaixo temos todas as tecnologias/ferramentas utilizadas durante o desenvolvimen
 * [![pgAdmin][PgAdmin-badge]][PgAdmin-url]
 * [![Render][Render-badge]][Render-url]
 * [![Postman][Postman-badge]][Postman-url]
+
+Durante o processo de desenvolvimento diferentes ferramentas foram aplicadas para facilitar a códificação, testes e uso. Durante o processo de teste, foi utilizado o banco de dados em memória H2 para gerar um banco volátil durante a execução do projeto localmente.
+Posteriormente a isso, já com o projeto finalizado foi optado realizar o processo de configuração do ambiente de homologação utilizando a ferramenta docker. Ainda com o projeto executando foram localmente criados dois containers: uma imagem do banco de daods Postgresql em execução
+e a ferramenta de gestão pgAdmin. Após criação das tabelas via query executado via pgAdmin houve a conexão perfeitamente e testado realizar operações. Por fim, para retirar a necessidade de ter o projeto executando localmente numa máquina foi optado utilizar o Render.
+O Render é um serviço de plataforma em nuvem que permite realizar o deploy de uma aplicação deixando disponível globalmente por um endereço IP. Para isso foi necessário criarmos uma imagem da aplicação configurado corretamente por um arquivo dockerfile.
+Realizada todas as configurações o projeto encontra-se em produção disponível pela plataforma Render. Como utilizo um plano gratuíto do Render a aplicação pode ter um delay ou disponibilidade limitada conforme as diretrizes da plataforma.
+
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [Java-badge]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
 [Java-url]: https://www.java.com/
@@ -112,5 +132,3 @@ Abaixo temos todas as tecnologias/ferramentas utilizadas durante o desenvolvimen
 
 [Postman-badge]: https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white
 [Postman-url]: https://www.postman.com/
-
-<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
