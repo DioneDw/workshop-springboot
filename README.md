@@ -78,9 +78,11 @@ Abaixo temos todas as tecnologias/ferramentas utilizadas durante o desenvolvimen
 * [![Render][Render-badge]][Render-url]
 * [![Postman][Postman-badge]][Postman-url]
 
-Durante o processo de desenvolvimento diferentes ferramentas foram aplicadas para facilitar a códificação, testes e uso. Durante o processo de teste, foi utilizado o banco de dados em memória H2 para gerar um banco volátil durante a execução do projeto localmente.
-Posteriormente a isso, já com o projeto finalizado foi optado realizar o processo de configuração do ambiente de homologação utilizando a ferramenta docker. Ainda com o projeto executando foram localmente criados dois containers: uma imagem do banco de daods Postgresql em execução
+Durante o processo de desenvolvimento diferentes ferramentas foram aplicadas para facilitar a codificação, testes e uso. Durante o processo de teste, foi utilizado o banco de dados em memória H2 para gerar um banco volátil durante a execução do projeto localmente.
+
+Posteriormente a isso, já com o projeto finalizado foi optado realizar o processo de configuração do ambiente de homologação utilizando a ferramenta docker. Ainda com o projeto executando foram localmente criados dois containers: uma imagem do banco de dados Postgresql em execução
 e a ferramenta de gestão pgAdmin. Após criação das tabelas via query executado via pgAdmin houve a conexão perfeitamente e testado realizar operações. Por fim, para retirar a necessidade de ter o projeto executando localmente numa máquina foi optado utilizar o Render.
+
 O Render é um serviço de plataforma em nuvem que permite realizar o deploy de uma aplicação deixando disponível globalmente por um endereço IP. Para isso foi necessário criarmos uma imagem da aplicação configurado corretamente por um arquivo dockerfile.
 Realizada todas as configurações o projeto encontra-se em produção disponível pela plataforma Render. Como utilizo um plano gratuíto do Render a aplicação pode ter um delay ou disponibilidade limitada conforme as diretrizes da plataforma.
 
