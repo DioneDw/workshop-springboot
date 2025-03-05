@@ -1,12 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="images/store.png" alt="Logo" width="80" height="80">
-  </a>
-
-<h1 align="center">Webservice Store Project</h1>
-
+<h1 align="center" id="tituloprojeto">Webservice Store Project</h1>
   <p align="center">
     Projeto de webservice de uma loja com SpringBoot!
 </div>
@@ -36,7 +32,7 @@ A ilustração acima que detalha como funciona a comunicação e transmissão de
 O diagrama UML (Unified Modeling Language) acima ilustra os aspectos do sistema como relacionamentos, comportamento, estrutura e funcionalidade.
 Inicialmente podemos destacar que o projeto possui 6 classes principais com relacionamentos entre si. Temos um Enumeração que representa o status do pedido de forma fixa.
 
-<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+<p align="right">(<a href="#tituloprojeto">voltar ao topo</a>)</p>
 
 ## :gear: Tecnologias/Ferramentas usadas
 Abaixo temos todas as tecnologias/ferramentas utilizadas durante o desenvolvimento da aplicação.
@@ -60,7 +56,7 @@ e a ferramenta de gestão pgAdmin. Após criação das tabelas via query executa
 O Render é um serviço de plataforma em nuvem que permite realizar o deploy de uma aplicação deixando disponível globalmente por um endereço IP. Para isso foi necessário criarmos uma imagem da aplicação configurado corretamente por um arquivo dockerfile.
 Realizada todas as configurações o projeto encontra-se em produção disponível pela plataforma Render. Como utilizo um plano gratuito do Render a aplicação pode ter um delay ou disponibilidade limitada conforme as diretrizes da plataforma.
 
-<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+<p align="right">(<a href="#tituloprojeto">voltar ao topo</a>)</p>
 
 
 ## :computer: Como iniciar o projeto
@@ -104,7 +100,7 @@ Caso não deseje clonar o projeto e executa-ló localmente você pode acessar di
    ```
 Para testar os endpoints, você pode utilizar o Postman com os métodos HTTP definidos na documentação.
 
-<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+<p align="right">(<a href="#tituloprojeto">voltar ao topo</a>)</p>
 
 
 ## :mortar_board: Conhecimentos Adquiridos e melhorias
@@ -119,7 +115,7 @@ Melhorias que foram feitas incluem:
 Linkedin: https://www.linkedin.com/in/dione-evangelista/
 
 GitHub: https://github.com/DioneDw
-<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+<p align="right">(<a href="#tituloprojeto">voltar ao topo</a>)</p>
 
 
 
