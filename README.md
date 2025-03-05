@@ -11,34 +11,6 @@
     Projeto de webservice de uma loja com SpringBoot!
 </div>
 
-<details>
-  <summary>Tabela de conteúdos</summary>
-  <ol>
-    <li>
-      <a href="#sobre-o-projeto">Sobre o projeto</a>
-      <ul>
-         <li><a href="#padrao-de-camadas">Padrão de camadas</a></li>
-         <li><a href="#diagrama-uml">Diagrama UML</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#tecnologiasferramentas-usadas">Tecnologias/Ferramentas usadas</a>
-    </li>
-    <li>
-      <a href="#como-iniciar-o-projeto">Como iniciar o projeto</a>
-      <ul>
-        <li><a href="#pre-requisitos">Pré-requisitos</a></li>
-        <li><a href="#instalacao">Instalação</a></li>
-         <li><a href="#utilizando">Utilizando</a></li>
-      </ul>
-    </li>
-    <li><a href="#conhecimentos-adquiridos-e-melhorias">Conhecimentos Adquiridos e melhorias</a></li>
-    <li><a href="#contato">Contato</a></li>
-  </ol>
-</details>
-
-
-
 ## :mag_right: Sobre o projeto
 O projeto é a construção de um Web Service utilizando a linguagem Java versão 17 e o framework SpringBoot versão 3 para uma Loja. O objetivo foi criar uma aplicação backend utilizando as boas práticas e o padrão API Rest, possibilitando através dos seus endpoints realizar as operações CRUD para as principais entidades da base de dados: usuários, produtos, categorias e pedidos.
 
@@ -120,11 +92,16 @@ Antes de rodar o projeto, é necessário ter as seguintes ferramentas instaladas
    mvn spring-boot:run
 
 ### :gear: Utilizando
-Após o projeto estar em execução, você pode acessar a documentação da API através do Swagger, que estará disponível no endereço:
+Após o projeto estar em execução localmente, você pode acessar a documentação da API através do Swagger, que estará disponível no endereço:
    ```bash
    http://localhost:8090/swagger-ui/index.html
    ```
+Caso não deseje clonar o projeto e executa-ló localmente você pode acessar diretamente o projeto em execução na nuvem (ambiente de produção) disponivel pela plataforma Render.
 
+**Observação importante**: A disponibilidade da aplicação em *cloud* pode variar conforme a plataforma Render, que pode apresentar um pouco de delay no carregamento.
+   ```bash
+  https://workshop-springboot-tqip.onrender.com
+   ```
 Para testar os endpoints, você pode utilizar o Postman com os métodos HTTP definidos na documentação.
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
