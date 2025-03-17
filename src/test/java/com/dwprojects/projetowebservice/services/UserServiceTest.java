@@ -55,8 +55,22 @@ class UserServiceTest {
     }
 
     @Test
-    void findById() {
+    void whenFindByIdThenReturnUser() {
+        when(repository.findById(anyLong())).thenReturn(optionalUser);
+
+        User response = service.findById(ID);
+
+        verify(repository, times(1)).findById(anyLong());
+        assertNotNull(response);
+        assertEquals(User.class, response.getClass());
+
+        assertEquals(ID, response.getId());
+        assertEquals(NAME, response.getName());
+        assertEquals(EMAIL, response.getEmail());
+        assertEquals(PHONE, response.getPhone());
+        assertEquals(PASSWORD, response.getPassword());
     }
+
 
     @Test
     void insert() {
