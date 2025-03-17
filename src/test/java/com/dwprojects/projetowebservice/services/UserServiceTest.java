@@ -2,6 +2,7 @@ package com.dwprojects.projetowebservice.services;
 
 import com.dwprojects.projetowebservice.entities.User;
 import com.dwprojects.projetowebservice.repositories.UserRepository;
+import com.dwprojects.projetowebservice.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import static org.mockito.Mockito.*;
 class UserServiceTest {
 
     public static final long ID = 1L;
+    public static final String RESOURCE_NOT_FOUND_MESSAGE = "Resource not found. Id: " + ID;
     public static final String NAME = "UserTest";
     public static final String EMAIL = "test@test.com";
     public static final String PHONE = "99999999";
@@ -71,6 +73,16 @@ class UserServiceTest {
         assertEquals(PASSWORD, response.getPassword());
     }
 
+    @Test
+    void whenFindByIdThrowException(){
+        when(repository.findById(anyLong())).thenThrow(new ResourceNotFoundException(ID));
+
+        ResourceNotFoundException response = assertThrows(ResourceNotFoundException.class, ()-> {
+            service.findById(ID);
+        });
+        assertNotNull(response.getMessage());
+        assertEquals(RESOURCE_NOT_FOUND_MESSAGE, response.getMessage());
+    }
 
     @Test
     void insert() {
