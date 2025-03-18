@@ -85,7 +85,22 @@ class UserServiceTest {
     }
 
     @Test
-    void insert() {
+    void whenInsertThenReturnSucess() {
+        when(repository.save(any())).thenReturn(user);
+
+        User response = service.insert(user);
+
+        verify(repository, times(1)).save(any());
+
+        assertNotNull(response);
+        assertEquals(User.class, response.getClass());
+
+        assertEquals(ID, response.getId());
+        assertEquals(NAME, response.getName());
+        assertEquals(EMAIL, response.getEmail());
+        assertEquals(PHONE, response.getPhone());
+        assertEquals(PASSWORD, response.getPassword());
+
     }
 
     @Test
