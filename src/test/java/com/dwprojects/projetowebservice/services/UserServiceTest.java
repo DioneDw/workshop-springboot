@@ -104,7 +104,10 @@ class UserServiceTest {
     }
 
     @Test
-    void delete() {
+    void whenDeleteThenReturnSucess() {
+        when(repository.existsById(anyLong())).thenReturn(true);
+        service.delete(ID);
+        verify(repository, times(1)).deleteById(ID);
     }
 
     @Test

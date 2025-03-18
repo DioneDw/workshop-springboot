@@ -32,7 +32,6 @@ public class UserService {
     }
 
     public void delete(Long id){
-
         try {
             if (!userRepository.existsById(id)) {
                 throw new ResourceNotFoundException(id);
