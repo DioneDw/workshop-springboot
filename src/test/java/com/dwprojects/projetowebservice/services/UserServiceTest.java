@@ -2,12 +2,14 @@ package com.dwprojects.projetowebservice.services;
 
 import com.dwprojects.projetowebservice.entities.User;
 import com.dwprojects.projetowebservice.repositories.UserRepository;
+import com.dwprojects.projetowebservice.services.exceptions.DatabaseException;
 import com.dwprojects.projetowebservice.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.*;
 
@@ -22,6 +24,7 @@ class UserServiceTest {
     public static final String EMAIL = "test@test.com";
     public static final String PHONE = "99999999";
     public static final String PASSWORD = "123465";
+    public static final String MESSAGE_EXCEPTION = "Test message exception";
 
     @InjectMocks
     private UserService service;
@@ -123,6 +126,14 @@ class UserServiceTest {
 
     @Test
     void whenDeleteThrowDataIntegrityViolationException() {
+        when(repository.existsById(anyLong())).thenReturn(true);
+
+        doThrow(new DatabaseException(MESSAGE_EXCEPTION)).when(repository).deleteById(ID);
+
+        DatabaseException response = assertThrows(DatabaseException.class, () -> repository.deleteById(ID));
+        assertEquals(MESSAGE_EXCEPTION, response.getMessage());
+        verify(repository, times(1)).deleteById(ID);
+
     }
 
     @Test
