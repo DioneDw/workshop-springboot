@@ -111,6 +111,21 @@ class UserServiceTest {
     }
 
     @Test
+    void whenDeleteThrowResourceNotFoundException() {
+        when(repository.existsById(anyLong())).thenThrow(new ResourceNotFoundException(ID));
+
+        ResourceNotFoundException response = assertThrows(ResourceNotFoundException.class, ()-> {
+            service.delete(ID);
+        });
+        assertNotNull(response.getMessage());
+        assertEquals(RESOURCE_NOT_FOUND_MESSAGE, response.getMessage());
+    }
+
+    @Test
+    void whenDeleteThrowDataIntegrityViolationException() {
+    }
+
+    @Test
     void update() {
     }
 
