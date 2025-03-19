@@ -157,6 +157,21 @@ class UserServiceTest {
 
     }
 
+    @Test
+    void whenUpdateNotFindIdThenThrowResourceNotFoundException (){
+        when(repository.getReferenceById(ID)).thenThrow(new ResourceNotFoundException(ID));
+        when(repository.save(user)).thenThrow(new ResourceNotFoundException(ID));
+
+        ResourceNotFoundException response = assertThrows(ResourceNotFoundException.class, ()->{
+            repository.getReferenceById(ID);
+            service.update(ID,user);
+        });
+
+        assertNotNull(response);
+        assertEquals(ResourceNotFoundException.class, response.getClass());
+        assertEquals(RESOURCE_NOT_FOUND_MESSAGE, response.getMessage());
+    }
+
     void startUsers(){
         user = new User(ID, NAME, EMAIL, PHONE, PASSWORD);
         optionalUser = Optional.of(new User(ID, NAME, EMAIL, PHONE, PASSWORD));
