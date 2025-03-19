@@ -137,7 +137,24 @@ class UserServiceTest {
     }
 
     @Test
-    void update() {
+    void whenUpdateThenReturnSuccess() {
+        when(repository.getReferenceById(anyLong())).thenReturn(user);
+        when(repository.save(any())).thenReturn(user);
+
+        User response = service.update(ID,user);
+
+        verify(repository, times(1)).getReferenceById(ID);
+        verify(repository, times(1)).save(user);
+
+        assertNotNull(response);
+        assertEquals(User.class, response.getClass());
+
+        assertEquals(ID, response.getId());
+        assertEquals(NAME, response.getName());
+        assertEquals(EMAIL, response.getEmail());
+        assertEquals(PHONE, response.getPhone());
+        assertEquals(PASSWORD, response.getPassword());
+
     }
 
     void startUsers(){
