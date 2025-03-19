@@ -2,12 +2,14 @@ package com.dwprojects.projetowebservice.services;
 
 import com.dwprojects.projetowebservice.entities.User;
 import com.dwprojects.projetowebservice.repositories.UserRepository;
+import com.dwprojects.projetowebservice.services.exceptions.DatabaseException;
 import com.dwprojects.projetowebservice.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.*;
 
@@ -22,6 +24,7 @@ class UserServiceTest {
     public static final String EMAIL = "test@test.com";
     public static final String PHONE = "99999999";
     public static final String PASSWORD = "123465";
+    public static final String MESSAGE_EXCEPTION = "Test message exception";
 
     @InjectMocks
     private UserService service;
@@ -85,15 +88,88 @@ class UserServiceTest {
     }
 
     @Test
-    void insert() {
+    void whenInsertThenReturnSucess() {
+        when(repository.save(any())).thenReturn(user);
+
+        User response = service.insert(user);
+
+        verify(repository, times(1)).save(any());
+
+        assertNotNull(response);
+        assertEquals(User.class, response.getClass());
+
+        assertEquals(ID, response.getId());
+        assertEquals(NAME, response.getName());
+        assertEquals(EMAIL, response.getEmail());
+        assertEquals(PHONE, response.getPhone());
+        assertEquals(PASSWORD, response.getPassword());
+
     }
 
     @Test
-    void delete() {
+    void whenDeleteThenReturnSucess() {
+        when(repository.existsById(anyLong())).thenReturn(true);
+        service.delete(ID);
+        verify(repository, times(1)).deleteById(ID);
     }
 
     @Test
-    void update() {
+    void whenDeleteThrowResourceNotFoundException() {
+        when(repository.existsById(anyLong())).thenThrow(new ResourceNotFoundException(ID));
+
+        ResourceNotFoundException response = assertThrows(ResourceNotFoundException.class, ()-> {
+            service.delete(ID);
+        });
+        assertNotNull(response.getMessage());
+        assertEquals(RESOURCE_NOT_FOUND_MESSAGE, response.getMessage());
+    }
+
+    @Test
+    void whenDeleteThrowDataIntegrityViolationException() {
+        when(repository.existsById(anyLong())).thenReturn(true);
+
+        doThrow(new DatabaseException(MESSAGE_EXCEPTION)).when(repository).deleteById(ID);
+
+        DatabaseException response = assertThrows(DatabaseException.class, () -> repository.deleteById(ID));
+        assertEquals(MESSAGE_EXCEPTION, response.getMessage());
+        verify(repository, times(1)).deleteById(ID);
+
+    }
+
+    @Test
+    void whenUpdateThenReturnSuccess() {
+        when(repository.getReferenceById(anyLong())).thenReturn(user);
+        when(repository.save(any())).thenReturn(user);
+
+        User response = service.update(ID,user);
+
+        verify(repository, times(1)).getReferenceById(ID);
+        verify(repository, times(1)).save(user);
+
+        assertNotNull(response);
+        assertEquals(User.class, response.getClass());
+
+        assertEquals(ID, response.getId());
+        assertEquals(NAME, response.getName());
+        assertEquals(EMAIL, response.getEmail());
+        assertEquals(PHONE, response.getPhone());
+        assertEquals(PASSWORD, response.getPassword());
+
+    }
+
+    @Test
+    void whenUpdateNotFindIdThenThrowResourceNotFoundException (){
+        when(repository.getReferenceById(ID)).thenThrow(new ResourceNotFoundException(ID));
+        when(repository.save(user)).thenThrow(new ResourceNotFoundException(ID));
+
+        ResourceNotFoundException response = assertThrows(ResourceNotFoundException.class, ()->{
+            repository.getReferenceById(ID);
+            service.update(ID,user);
+        });
+
+        assertNotNull(response);
+        assertEquals(ResourceNotFoundException.class, response.getClass());
+        assertEquals(RESOURCE_NOT_FOUND_MESSAGE, response.getMessage());
     }
 
     void startUsers(){
