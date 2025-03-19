@@ -46,7 +46,7 @@ class UserServiceTest {
     }
 
     @Test
-    void findAll() {
+    void whenFindAllThenReturnListUsers() {
         when(repository.findAll()).thenReturn(List.of(user));
 
         List<User> response = service.findAll();
