@@ -4,6 +4,7 @@ import com.dwprojects.projetowebservice.entities.User;
 import com.dwprojects.projetowebservice.repositories.UserRepository;
 import com.dwprojects.projetowebservice.services.exceptions.DatabaseException;
 import com.dwprojects.projetowebservice.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -115,22 +116,30 @@ class UserServiceTest {
 
     @Test
     void whenDeleteThrowResourceNotFoundException() {
-        when(repository.existsById(anyLong())).thenThrow(new ResourceNotFoundException(ID));
+        when(repository.existsById(anyLong())).thenReturn(false);
 
         ResourceNotFoundException response = assertThrows(ResourceNotFoundException.class, ()-> {
             service.delete(ID);
         });
-        assertNotNull(response.getMessage());
+
+        assertNotNull(response);
+        assertEquals(ResourceNotFoundException.class, response.getClass());
         assertEquals(RESOURCE_NOT_FOUND_MESSAGE, response.getMessage());
+        verify(repository, times(1)).existsById(ID);
+        verify(repository, never()).deleteById(ID);
     }
 
     @Test
     void whenDeleteThrowDataIntegrityViolationException() {
         when(repository.existsById(anyLong())).thenReturn(true);
+        doThrow(new DataIntegrityViolationException(MESSAGE_EXCEPTION)).when(repository).deleteById(anyLong());
 
-        doThrow(new DatabaseException(MESSAGE_EXCEPTION)).when(repository).deleteById(ID);
+        DatabaseException response = assertThrows(DatabaseException.class, ()-> {
+            service.delete(ID);
+        });
 
-        DatabaseException response = assertThrows(DatabaseException.class, () -> repository.deleteById(ID));
+        assertNotNull(response);
+        assertEquals(DatabaseException.class, response.getClass());
         assertEquals(MESSAGE_EXCEPTION, response.getMessage());
         verify(repository, times(1)).deleteById(ID);
 
@@ -158,12 +167,9 @@ class UserServiceTest {
     }
 
     @Test
-    void whenUpdateNotFindIdThenThrowResourceNotFoundException (){
-        when(repository.getReferenceById(ID)).thenThrow(new ResourceNotFoundException(ID));
-        when(repository.save(user)).thenThrow(new ResourceNotFoundException(ID));
-
-        ResourceNotFoundException response = assertThrows(ResourceNotFoundException.class, ()->{
-            repository.getReferenceById(ID);
+    void whenUpdateNotFindIdThenThrowException (){
+        when(repository.getReferenceById(anyLong())).thenThrow(new EntityNotFoundException());
+        Exception response = assertThrows(ResourceNotFoundException.class, () -> {
             service.update(ID,user);
         });
 
