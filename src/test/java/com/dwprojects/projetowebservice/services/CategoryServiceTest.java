@@ -53,6 +53,21 @@ class CategoryServiceTest {
         assertEquals(NAME_CATEGORY, response.get(0).getName());
     }
 
+    @Test
+    void whenFindByIdThenReturnCategory() {
+        when(repository.findById(anyLong())).thenReturn(optionalCategory);
+
+        Category response = service.findById(ID);
+
+        verify(repository, times(1)).findById(ID);
+        assertNotNull(response);
+        assertEquals(Category.class, response.getClass());
+
+        assertEquals(ID, response.getId());
+        assertEquals(NAME_CATEGORY, response.getName());
+
+    }
+
     void startCategory(){
         category = new Category(ID, NAME_CATEGORY);
         optionalCategory = Optional.of(new Category(ID, NAME_CATEGORY));
