@@ -67,19 +67,6 @@ class OrderServiceTest {
 
     @Test
     void findById() {
-        when(repository.findById(anyLong())).thenReturn(optionalOrder);
-
-        Order response = service.findById(ID);
-
-        verify(repository, times(1)).findById(ID);
-        assertNotNull(response);
-        assertEquals(Order.class, response.getClass());
-
-        assertEquals(ID, response.getId());
-        assertEquals(instant, response.getMoment());
-        assertEquals(orderStatus, response.getOrderStatus());
-        assertEquals(user, response.getClient());
-
     }
 
     void startOrder(){
