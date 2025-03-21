@@ -26,4 +26,17 @@ class OrderStatusTest {
         assertEquals(CODE, response.getCode());
     }
 
+    @Test
+    void whenValueOfThrowException(){
+
+        Exception response = assertThrows(IllegalArgumentException.class, () -> {
+            OrderStatus.valueOf(8);
+        });
+
+        assertNotNull(response);
+        assertEquals(IllegalArgumentException.class, response.getClass());
+        assertEquals(MESSAGE_EXCEPTION, response.getMessage());
+
+    }
+
 }
