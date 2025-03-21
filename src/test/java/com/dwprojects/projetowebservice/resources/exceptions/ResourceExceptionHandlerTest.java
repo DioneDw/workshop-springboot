@@ -1,5 +1,6 @@
 package com.dwprojects.projetowebservice.resources.exceptions;
 
+import com.dwprojects.projetowebservice.services.exceptions.DatabaseException;
 import com.dwprojects.projetowebservice.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ class ResourceExceptionHandlerTest {
 
     public static final long ID = 1L;
     public static final String EXPECTED = "Resource not found. Id: " + ID;
+    public static final String DATABASE_ERROR = "Database error";
     @InjectMocks
     private ResourceExceptionHandler exceptionHandler;
 
@@ -32,7 +34,7 @@ class ResourceExceptionHandlerTest {
     }
 
     @Test
-    void resourceNotFound() {
+    void whenResourceNotFoundExceptionIsThrow() {
         ResponseEntity<StandardError> response = exceptionHandler.resourceNotFound(new ResourceNotFoundException(ID),
                 new MockHttpServletRequest());
 
@@ -46,6 +48,16 @@ class ResourceExceptionHandlerTest {
     }
 
     @Test
-    void database() {
+    void whenDatabaseExceptionIsThrow() {
+        ResponseEntity<StandardError> response = exceptionHandler.database(new DatabaseException(DATABASE_ERROR),
+                new MockHttpServletRequest());
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+
+        assertEquals(ResponseEntity.class, response.getClass());
+        assertEquals(standardError.getClass(), response.getBody().getClass());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(DATABASE_ERROR, response.getBody().getMessage());
     }
 }
