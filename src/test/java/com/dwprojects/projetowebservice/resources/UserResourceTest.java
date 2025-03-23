@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.stubbing.answers.DoesNothing;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,18 +65,79 @@ class UserResourceTest {
 
     @Test
     void insert() {
+        when(service.insert(any())).thenReturn(user);
+
+        ResponseEntity<User> response = resource.insert(user);
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertNotNull(response.getHeaders().get("Location"));
+        assertEquals(ResponseEntity.class, response.getClass());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+
+        assertEquals(User.class, response.getBody().getClass());
+        assertEquals(ID, response.getBody().getId());
+        assertEquals(NAME, response.getBody().getName());
+        assertEquals(EMAIL, response.getBody().getEmail());
+        assertEquals(PASSWORD, response.getBody().getPassword());
+
+        verify(service,times(1)).insert(user);
+
     }
 
     @Test
     void findById() {
+        when(service.findById(anyLong())).thenReturn(user);
+
+        ResponseEntity<User> response = resource.findById(ID);
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertEquals(ResponseEntity.class, response.getClass());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+
+        assertEquals(User.class, response.getBody().getClass());
+        assertEquals(ID, response.getBody().getId());
+        assertEquals(NAME, response.getBody().getName());
+        assertEquals(EMAIL, response.getBody().getEmail());
+        assertEquals(PASSWORD, response.getBody().getPassword());
+
+        verify(service,times(1)).findById(ID);
+
     }
 
     @Test
     void delete() {
+        doNothing().when(service).delete(anyLong());
+
+        ResponseEntity<Void> response = resource.delete(ID);
+
+        assertNotNull(response);
+        assertNull(response.getBody());
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+
+        verify(service,times(1)).delete(ID);
     }
 
     @Test
     void update() {
+        when(service.update(anyLong(),any())).thenReturn(user);
+
+        ResponseEntity<User> response = resource.update(ID, user);
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertEquals(ResponseEntity.class, response.getClass());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+
+        assertEquals(User.class, response.getBody().getClass());
+        assertEquals(ID, response.getBody().getId());
+        assertEquals(NAME, response.getBody().getName());
+        assertEquals(EMAIL, response.getBody().getEmail());
+        assertEquals(PASSWORD, response.getBody().getPassword());
+
+        verify(service,times(1)).update(ID, user);
+
     }
 
     void startUser(){

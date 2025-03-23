@@ -5,6 +5,7 @@ import com.dwprojects.projetowebservice.entities.Product;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Generated;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -21,10 +22,15 @@ public class OrderItemPK implements Serializable {
 
     private Product product;
 
+    public OrderItemPK(){
+
+    }
+
+    @Generated
     public Order getOrder() {
         return order;
     }
-
+    @Generated
     public void setOrder(Order order) {
         this.order = order;
     }
@@ -32,11 +38,11 @@ public class OrderItemPK implements Serializable {
     public Product getProduct() {
         return product;
     }
-
+    @Generated
     public void setProduct(Product product) {
         this.product = product;
     }
-
+    @Generated
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,7 +51,7 @@ public class OrderItemPK implements Serializable {
         OrderItemPK that = (OrderItemPK) o;
         return Objects.equals(order, that.order) && Objects.equals(product, that.product);
     }
-
+    @Generated
     @Override
     public int hashCode() {
         int result = Objects.hashCode(order);

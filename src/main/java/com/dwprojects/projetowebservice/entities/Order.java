@@ -4,6 +4,7 @@ package com.dwprojects.projetowebservice.entities;
 import com.dwprojects.projetowebservice.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.Generated;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -42,19 +43,19 @@ public class Order implements Serializable {
 
     public Order() {
     }
-
+    @Generated
     public Long getId() {
         return id;
     }
-
+    @Generated
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Generated
     public Instant getMoment() {
         return moment;
     }
-
+    @Generated
     public void setMoment(Instant moment) {
         this.moment = moment;
     }
@@ -68,26 +69,27 @@ public class Order implements Serializable {
             this.orderStatus = orderStatus.getCode();
         }
     }
-
+    @Generated
     public User getClient() {
         return client;
     }
-
+    @Generated
     public void setClient(User client) {
         this.client = client;
     }
-
+    @Generated
     public Set<OrderItem> getItems(){
         return items;
     }
-
+    @Generated
     public Payment getPayment() {
         return payment;
     }
-
+    @Generated
     public void setPayment(Payment payment) {
         this.payment = payment;
     }
+
 
     public Double getTotal(){
         double sum = 0.0;
@@ -96,7 +98,7 @@ public class Order implements Serializable {
         }
         return sum;
     }
-
+    @Generated
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,7 +107,7 @@ public class Order implements Serializable {
         Order order = (Order) o;
         return Objects.equals(id, order.id);
     }
-
+    @Generated
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
