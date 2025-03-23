@@ -34,54 +34,50 @@ public class User implements Serializable {
         this.phone = phone;
         this.password = password;
     }
-
+    @Generated
     public Long getId() {
         return id;
     }
-
     @Generated
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Generated
     public String getName() {
         return name;
     }
-
+    @Generated
     public void setName(String name) {
         this.name = name;
     }
-
+    @Generated
     public String getEmail() {
         return email;
     }
-
+    @Generated
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @Generated
     public String getPhone() {
         return phone;
     }
-
+    @Generated
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
+    @Generated
     public String getPassword() {
         return password;
     }
-
     @Generated
     public void setPassword(String password) {
         this.password = password;
     }
-
     @Generated
     public List<Order> getOrders() {
         return orders;
     }
-
     @Generated
     @Override
     public boolean equals(Object o) {
@@ -91,7 +87,6 @@ public class User implements Serializable {
         User user = (User) o;
         return Objects.equals(id, user.id);
     }
-
     @Generated
     @Override
     public int hashCode() {

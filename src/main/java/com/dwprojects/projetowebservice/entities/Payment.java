@@ -30,37 +30,30 @@ public class Payment implements Serializable {
         this.order = order;
         this.moment = moment;
     }
-
     @Generated
     public Instant getMoment() {
         return moment;
     }
-
     @Generated
     public void setMoment(Instant moment) {
         this.moment = moment;
     }
-
     @Generated
     public Order getOrder() {
         return order;
     }
-
     @Generated
     public void setOrder(Order order) {
         this.order = order;
     }
-
     @Generated
     public Long getId() {
         return id;
     }
-
     @Generated
     public void setId(Long id) {
         this.id = id;
     }
-
     @Generated
     @Override
     public boolean equals(Object o) {
@@ -70,7 +63,6 @@ public class Payment implements Serializable {
         Payment payment = (Payment) o;
         return Objects.equals(id, payment.id);
     }
-
     @Generated
     @Override
     public int hashCode() {

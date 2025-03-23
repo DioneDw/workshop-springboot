@@ -40,47 +40,42 @@ public class Product implements Serializable {
         this.price = price;
         this.imgUrl = imgUrl;
     }
-
+    @Generated
     public Long getId() {
         return id;
     }
-
     @Generated
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Generated
     public String getName() {
         return name;
     }
-
     @Generated
     public void setName(String name) {
         this.name = name;
     }
-
+    @Generated
     public String getDescription() {
         return description;
     }
-
     @Generated
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @Generated
     public Double getPrice() {
         return price;
     }
-
     @Generated
     public void setPrice(Double price) {
         this.price = price;
     }
-
+    @Generated
     public String getImgUrl() {
         return imgUrl;
     }
-
     @Generated
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
@@ -98,7 +93,6 @@ public class Product implements Serializable {
         }
         return orders;
     }
-
     @Generated
     @Override
     public boolean equals(Object o) {
@@ -108,7 +102,6 @@ public class Product implements Serializable {
         Product product = (Product) o;
         return Objects.equals(id, product.id);
     }
-
     @Generated
     @Override
     public int hashCode() {

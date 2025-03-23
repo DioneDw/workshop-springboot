@@ -2,10 +2,10 @@ package com.dwprojects.projetowebservice.entities.pk;
 
 import com.dwprojects.projetowebservice.entities.Order;
 import com.dwprojects.projetowebservice.entities.Product;
-import jakarta.annotation.Generated;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Generated;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -22,22 +22,23 @@ public class OrderItemPK implements Serializable {
 
     private Product product;
 
+    @Generated
     public Order getOrder() {
         return order;
     }
-
+    @Generated
     public void setOrder(Order order) {
         this.order = order;
     }
-
+    @Generated
     public Product getProduct() {
         return product;
     }
-
+    @Generated
     public void setProduct(Product product) {
         this.product = product;
     }
-
+    @Generated
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -46,7 +47,7 @@ public class OrderItemPK implements Serializable {
         OrderItemPK that = (OrderItemPK) o;
         return Objects.equals(order, that.order) && Objects.equals(product, that.product);
     }
-
+    @Generated
     @Override
     public int hashCode() {
         int result = Objects.hashCode(order);
