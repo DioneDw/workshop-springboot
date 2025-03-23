@@ -1,7 +1,5 @@
 package com.dwprojects.projetowebservice.entities.enums;
 
-import com.dwprojects.projetowebservice.entities.Order;
-
 public enum OrderStatus {
 
     // Jeito comum
