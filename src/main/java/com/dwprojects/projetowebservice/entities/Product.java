@@ -85,6 +85,11 @@ public class Product implements Serializable {
         return categories;
     }
 
+    @Generated
+    public Set<OrderItem> getItens(){
+        return items;
+    }
+
     @JsonIgnore
     public Set<Order> getOrders(){
         Set<Order> orders = new HashSet<>();

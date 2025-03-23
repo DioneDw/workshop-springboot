@@ -22,6 +22,10 @@ public class OrderItemPK implements Serializable {
 
     private Product product;
 
+    public OrderItemPK(){
+
+    }
+
     @Generated
     public Order getOrder() {
         return order;
@@ -30,7 +34,7 @@ public class OrderItemPK implements Serializable {
     public void setOrder(Order order) {
         this.order = order;
     }
-    @Generated
+
     public Product getProduct() {
         return product;
     }
