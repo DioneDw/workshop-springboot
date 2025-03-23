@@ -2,6 +2,7 @@ package com.dwprojects.projetowebservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Generated;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class User implements Serializable {
         return id;
     }
 
+    @Generated
     public void setId(Long id) {
         this.id = id;
     }
@@ -70,14 +72,17 @@ public class User implements Serializable {
         return password;
     }
 
+    @Generated
     public void setPassword(String password) {
         this.password = password;
     }
 
+    @Generated
     public List<Order> getOrders() {
         return orders;
     }
 
+    @Generated
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,6 +92,7 @@ public class User implements Serializable {
         return Objects.equals(id, user.id);
     }
 
+    @Generated
     @Override
     public int hashCode() {
         return Objects.hashCode(id);

@@ -2,6 +2,7 @@ package com.dwprojects.projetowebservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Generated;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -44,6 +45,7 @@ public class Product implements Serializable {
         return id;
     }
 
+    @Generated
     public void setId(Long id) {
         this.id = id;
     }
@@ -52,6 +54,7 @@ public class Product implements Serializable {
         return name;
     }
 
+    @Generated
     public void setName(String name) {
         this.name = name;
     }
@@ -60,6 +63,7 @@ public class Product implements Serializable {
         return description;
     }
 
+    @Generated
     public void setDescription(String description) {
         this.description = description;
     }
@@ -68,6 +72,7 @@ public class Product implements Serializable {
         return price;
     }
 
+    @Generated
     public void setPrice(Double price) {
         this.price = price;
     }
@@ -76,6 +81,7 @@ public class Product implements Serializable {
         return imgUrl;
     }
 
+    @Generated
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
@@ -93,6 +99,7 @@ public class Product implements Serializable {
         return orders;
     }
 
+    @Generated
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -102,6 +109,7 @@ public class Product implements Serializable {
         return Objects.equals(id, product.id);
     }
 
+    @Generated
     @Override
     public int hashCode() {
         return Objects.hashCode(id);

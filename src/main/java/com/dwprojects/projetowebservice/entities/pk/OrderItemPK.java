@@ -2,6 +2,7 @@ package com.dwprojects.projetowebservice.entities.pk;
 
 import com.dwprojects.projetowebservice.entities.Order;
 import com.dwprojects.projetowebservice.entities.Product;
+import jakarta.annotation.Generated;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
