@@ -7,7 +7,6 @@ import com.dwprojects.projetowebservice.entities.security.UserAuth;
 import com.dwprojects.projetowebservice.repositories.security.UserAuthRepository;
 import com.dwprojects.projetowebservice.services.security.TokenService;
 import jakarta.validation.Valid;
-import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +30,11 @@ public class AuthenticationResource {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO authenticationDTO) throws AuthenticationException {
+    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO authenticationDTO) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(authenticationDTO.login(),authenticationDTO.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        var token = tokenService.generatedToken((UserAuth) auth.getPrincipal());
+        var token = tokenService.generateToken((UserAuth) auth.getPrincipal());
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 

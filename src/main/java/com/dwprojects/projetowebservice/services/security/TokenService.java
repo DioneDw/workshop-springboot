@@ -5,7 +5,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.dwprojects.projetowebservice.entities.security.UserAuth;
-import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String generatedToken(UserAuth userAuth) throws AuthenticationException {
+    public String generateToken(UserAuth userAuth){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
@@ -31,7 +30,7 @@ public class TokenService {
 
             return token;
         }catch (JWTCreationException ex){
-            throw new RuntimeException("error while generating token");
+            throw new RuntimeException("error while generating token", ex);
         }
     }
 
@@ -42,7 +41,7 @@ public class TokenService {
 
 
 
-    public String validateToken(String token) throws AuthenticationException {
+    public String validateToken(String token){
         try{
             Algorithm algorithm = Algorithm.HMAC256(secret);
 

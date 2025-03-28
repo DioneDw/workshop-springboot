@@ -6,7 +6,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +19,7 @@ import java.io.IOException;
 public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
 
     @Autowired
     UserAuthRepository userRepository;
@@ -29,12 +28,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var token = this.recoverToken(request);
             if (token != null) {
-                String login = null;
-                try {
-                    login = tokenService.validateToken(token);
-                } catch (AuthenticationException e) {
-                    throw new RuntimeException(e);
-                }
+                var login = tokenService.validateToken(token);
                 UserDetails user = userRepository.findByLogin(login);
 
                 var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());

@@ -1,4 +1,4 @@
-package com.dwprojects.projetowebservice.repositories;
+package com.dwprojects.projetowebservice.repositories.security;
 
 import com.dwprojects.projetowebservice.entities.security.UserAuth;
 import org.springframework.data.jpa.repository.JpaRepository;
