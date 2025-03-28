@@ -86,6 +86,7 @@ public class Product implements Serializable {
     }
 
     @Generated
+    @JsonIgnore
     public Set<OrderItem> getItens(){
         return items;
     }
