@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_auth")
+@Table(name = "tb_user_auth")
 public class UserAuth implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

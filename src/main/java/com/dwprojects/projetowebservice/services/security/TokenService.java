@@ -51,7 +51,7 @@ public class TokenService {
                     .verify(token)
                     .getSubject();
         }catch (JWTVerificationException ex){
-            throw new RuntimeException("Token inválido ou expirado.");
+            return "";
         }
 
     }
